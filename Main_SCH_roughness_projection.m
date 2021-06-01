@@ -69,10 +69,6 @@ load(analysis_mat_file);
 donor_mesh = true; % if false it will load a unit sphere as a donor mesh
 icosahedron_dome_refinement = 4;
 
-% To refine the mesh region of the selcted patch, 0 will not do any
-% refinement cycles
-% refine_local_patch = 1;
-
 % donor_mesh_name = 'grad_ref_cube.stl';
 % donor_mesh_name = 'refined_sphere.stl';
 % donor_mesh_name = 'cube_refined_sample_2.stl';

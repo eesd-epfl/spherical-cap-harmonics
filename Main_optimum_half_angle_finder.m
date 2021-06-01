@@ -54,11 +54,12 @@ silent_mode = false;
 PSS_plot_results = true;
 LB = deg2rad(7); % Lower bound in radians for \theta_c
 UB = deg2rad(120);% Upper bound in radians for \theta_c
-pop_size = 30;
-iterations = 20;
+pop_size = 20;
+iterations = 5;
 acceptance_rate = 0.97;
 %% Input surface
 surface_name = 'half_rock_mesh_manifold.stl';  % Best answer 100 degrees...
+surface_name = "test_rough_surface.stl"; % Best answer 8.6 degrees...
 
 plot_figures = true;
 
@@ -82,8 +83,6 @@ if plot_figures
     paraview_patch(v, f, height_map)
     view([50 20])
     ff = gcf;
-    exportgraphics(ff,'lol.png',...
-        'BackgroundColor','none', 'Resolution', 1000)
     title('Input surface')
 end
 %% The core of the solver
@@ -96,17 +95,14 @@ results_struct = PSS_optimizer(objective_fun, LB, UB, pop_size, iterations, ...
 best_theta_c = results_struct.best_solution;
 optimum_eval = results_struct.evaluations_history(end);
 map = spherical_cap_conformal_map(v, f, cos(best_theta_c), false);
-stlWrite(['optimum_half_angle/para_th_', num2str(rad2deg(best_theta_c)), '_eval_',...
-    num2str(optimum_eval), '_', surface_name], f, map,'mode','ascii')
+stlWrite(strcat('optimum_half_angle/para_th_', num2str(rad2deg(best_theta_c)), '_eval_',...
+    num2str(optimum_eval), '_', surface_name), f, map,'mode','ascii')
 if plot_figures
     height_map = sqrt(v(:, 3).^2 + v(:, 2).^2 + v(:, 1).^2);
     paraview_patch(map, f, height_map)
     view([50 20])
-    title(['Input surface, \theta_{c} = ', num2str(rad2deg(best_theta_c))])
+    title(['Output surface, \theta_{c} = ', num2str(rad2deg(best_theta_c))])
     ff = gcf;
-    exportgraphics(ff,'lol2.png',...
-        'BackgroundColor','none', 'Resolution', 1000)
-    title('Input surface')
 end
 disp(['Best half-angle obtained is: ', num2str(rad2deg(best_theta_c))])
 toc

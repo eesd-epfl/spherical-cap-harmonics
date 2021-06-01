@@ -55,36 +55,32 @@ fprintf('The analysis started at: %s\n', datestr(now,'HH:MM:SS.FFF'))
 % To appply spherical cap parametrization step (true)
 parametrization = true;
 
-% surface_name = 'test_rough_surface_4.stl';
-% surface_name = 'mainfold_monkey2.stl';
-% surface_name = 'mainfold_monkey_3.stl';
-% surface_name = 'random_rounded_surface.stl';
-% surface_name = 'random_rounded_surface_extra_refined.stl';
-% surface_name = '3D_face.stl';
-% surface_name = 'Stanford_bunny2.stl';
-% surface_name = 'half_stone.stl';
-% surface_name = '3D_face_refined.stl';
-% surface_name = '3D_face_refined_patch_2.stl';
-% surface_name = 'remeshed_mainfold_monkey.stl';
-% surface_name = 'half_model_still_water.stl';
-% surface_name = 'micro_circular_fractal_surface_H_0_9_s_10.stl';
-% surface_name = 'rocks_patch.stl';
-surface_name = 'rocks_patch_rough.stl';
-% surface_name = 'rec_artificial_H_0.6.stl';
+% surface_name = 'rocks_patch_rough.stl'; % This one should be downloaded
+% from Zenodo
+surface_name = 'test_rough_surface.stl'; % This is a simple and dummy surface (a fast example)
 
 para_surface_path = ''; % if the parametrization already computed
 solve_roots = false; % To solve for the roots if not pre-calculated!
+
+ % The table is included already no need to calculate the roots
+ % If the user wants to use different \theta_c or roots for K>39+1
+ % uncomment the next line and comment the table with path so it could
+ % recompute the S-L roots AGAIN. Be careful with the computed roots!(check them out befor usage)
 % eigen_table_path = '';
 eigen_table_path = "eigenvalues_k_40_even_theta_10.mat";
-% eigen_table_path = "eigenvalues_k_35_even_theta_50.mat";
+% eigen_table_path = "eigenvalues_k_35_even_theta_50.mat"; %(just an example)
 
 theta_c = deg2rad(10); % The half-angle of the spherical cap (must be in radians)
+
+% To try this method real quick, firts use max_degree = 12;
+% For k <= 12 the hypergeometric function is computed really fast.
 max_degree = 39 + 1; % +1 to account for the 0-degree.
 max_reconstruction_degree = 39 + 1;
 truncation_degree_fit = 40; % For fitting the fractal dimension
 truncation_degree_fit = min(truncation_degree_fit, max_degree);
 max_reconstruction_degree = min(max_reconstruction_degree, max_degree);
 
+% In case you wanted to compute the roots again from here.
 max_iterations_steps = 50;
 solver_steps = 0.5;
 solver_increment_diag = 0.1;
