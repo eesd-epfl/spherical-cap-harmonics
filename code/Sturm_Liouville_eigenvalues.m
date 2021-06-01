@@ -88,7 +88,7 @@ if BC == "odd"
 elseif BC == "even"
     f_BC = @(k, l, m, x) Neumann_BC(k, l, m, x, N_eps1, N_eps2);
 end
-%% Start the solver here
+%% Start the solver hereJidong Zhao
 % Find the first K-roots (eigenvalues) at \theta_o
 
 % Solve for diagonals
