@@ -10,6 +10,8 @@ The Matlab codes include implementations for:
 - Spherical Harmonics (SH)
 - Hemispherical Harmonics (HSH)
 
+The code should be readily avilable for running on Matlab (never tested for Octave). The *.m* files that start with *Main_..* are the main interfaces proposed by the authors for running the suggested topics in the paper. They already contain exhaustive comments on the how-to-use. For instructions on the usage of these files please refer to the paper or [Mahmoud Shaqfa](mailto:mahmoud.shaqfa@epfl.ch?subject=[GitHub]%20SCH%20source%20code).
+
 These codes deal with morphological reconstruction of convex and nonconvex open and closed surfaces. This paper is focusing mainly on dealing with rough surfaces but it also can be used for different applications such as medical imaging.
 
 A video render of the reconstruction process for the geometry in Fig. 9 of the abovementioned paper can be found here: 
